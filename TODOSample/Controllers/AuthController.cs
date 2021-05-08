@@ -104,18 +104,18 @@ namespace TODOSample.Controllers
 
         [Authorize("SA")]
         [HttpPost("roles")]
-        public async Task<IActionResult> CreateRole(string roleName)
+        public async Task<IActionResult> CreateRole([FromBody] RoleModel model)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(roleName))
+                if (string.IsNullOrWhiteSpace(model.RoleName))
                 {
                     return Ok(new Response(true, "Role name should be provided", null));
                 }
 
                 var newRole = new Role
                 {
-                    Name = roleName
+                    Name = model.RoleName
                 };
 
                 var roleResult = await _roleManager.CreateAsync(newRole);
