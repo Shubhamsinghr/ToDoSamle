@@ -124,8 +124,7 @@ namespace TODOSample.Controllers
                 {
                     return Ok(new Response(true, "Role added successfully", null));
                 }
-
-                return Problem(roleResult.Errors.First().Description, null, 500);
+                return Ok(new Response(false, roleResult.Errors.First().Description, null));
             }
             catch (Exception ex)
             {
